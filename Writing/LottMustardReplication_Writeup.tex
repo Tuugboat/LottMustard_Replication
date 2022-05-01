@@ -1,0 +1,105 @@
+\documentclass{article}
+
+% Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+
+% R Table packages
+% booktabs and float are used frequently by kableExtra output from R
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+% Page layout libraries
+\usepackage{a4wide}
+\usepackage{setspace}
+\usepackage{geometry}
+%\usepackage{parskip}
+\usepackage{fancyhdr}
+
+% Setting up the heading style preferred here
+\pagestyle{fancy}
+\fancyhead[L]{\thepage}
+\fancyhead[C]{}
+\fancyhead[R]{\textrm{Robert Petit}}
+\fancyfoot[L, C, R]{}
+
+
+% this package helps us with including images. Setting the graphics path makes it easier to refer to things in the \includegraphics command.
+\usepackage{graphicx}
+\graphicspath{ {../Figures/} }
+
+% And finally, continuing on my crusade to make Helvetica the universal standard
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+
+% Titling
+\title{Lott and Mustard Revisited}
+\author{Robert Petit}
+\date{May 2022}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+The question of concealed carry permits and their effect on crimes has long been an extremely controversial topic. Lott and Mustard (1997) is an extremely important analysis of these permits but, since it's original publishing in 1997 research design has become far more adept at determining causal factors. 
+
+By re-analyzing this data with newer, more thorough methods, we can investigate more closely the findings of the original paper and determine what, if any, effect these laws have on crime.
+
+\section{Background and Theory}
+
+Crime deterrence as a whole is a more-than controversial subject in the modern day; the concept of being "tough on crime" is commonplace in modern media and politics and comes in many forms, from increasing police presence and prison sentences to denying civil liberties and services in perpetuity. The goal is to drive the cost of crime so high that it becomes rare that a rational person would \emph{ever} choose to engage in illicit activity. "Shall-issue" laws are another step in this direction; these are state-level laws that ensure any person who is legal and meets some basic eligibility requirements be issued a permit for carrying a concealed weapon.
+
+The theory here is quite simple: more armed victims \emph{should} mean a higher expected cost of committing a crime and, subsequently, a lower number of crimes committed. This carries the obvious restrictions that we would only expect this change in crimes where the victim is aware and present at the time the crime is committed, such as assault and robbery, and smaller or no changes when the victim is not present or aware, while the crime is being committed, such as auto theft. 
+
+\input{../Tables/Table_LawRollout.tex}
+
+Shall-issue laws were a hot-bed political topic starting in 1976 and, from 1987 to 1991
+\footnote{The years for each law come from Lott and Mustard (1997) \cite{LottMustard} and Cramer and Kopel (1995) \cite{CramerKopel}. The only discrepancy between the two sources is that of Oregon, which Lott and Mustard list as 1990 whereas Cramer and Kopel cite the law as 1989. This may be due to the timing of the law, later analysis does not seem consequentially sensitive to this shift in any case.}
+there were several of these laws passed. Prior to this wave of laws (and the start of our data) there were eight states that already had these laws in effect. These laws were very similar to one another in that they funcitonally removed the ability for any lower-than-state level official to restrict the issuance of a gun permit. There is some heterogeneity among the effect of these laws within each state, since some officials were more restrictive than others, but across each state this resulted in greater access to concealed carry permits issuance.
+
+We will use several models to determine the effect of these laws on crimes; our goal here is to determine the average treatment effect on the treated groups. The model most similar to the approach of Lott and Mustard (1997) \cite{LottMustard} is the two-way fixed effect model but this estimator is known to have some unfavorable properties. To handle this, we will also investigate the Bacon decomposition \cite{Bacon} for the two-way fixed effect model.  Implement the Callaway and Sant'anna estimator \cite{CallawaySantanna} and the Sun and Abraham event study to get a more contemporary idea of the effects.
+
+\section{Data}
+
+Here we are working with the state level data from the National Research Council's review of firearms and gun violence, provided by Peter Donohue \cite{Donohue}. This data covers the yearly crimes for violent crimes and property crimes in all fifty states from 1977 to 2006. The violent crimes subdivided into murder, rape, assault and the property crimes are subdivided into robbery, auto theft, burglary, and larceny.
+
+\input{../Tables/Table_CrimeSummary.tex}
+
+
+
+\section{Empirical Models}
+
+\subsection{Two-Way Fixed Effects}
+
+\subsection{Bacon Decomposition}
+
+\subsection{Callaway and Sant'Anna}
+
+\input{../Tables/Table_CSEst.tex}
+
+\subsection{Event Study}
+
+\section{Conclusion}
+
+\emph{To Self Only}
+Bring up:
+\begin{itemize}
+    \item State-wide variation biasing \emph{against} findings
+\end{itemize}  
+
+\begin{itemize}
+
+    \item baker\_cs.R has the CS estimator reference
+    \item cs\_event.R has the Event Study reference
+\end{itemize}
+
+
+\bibliography{LottMustardReplication_Bib}
+\bibliographystyle{plain}
+
+\end{document}

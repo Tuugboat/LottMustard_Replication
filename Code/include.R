@@ -28,11 +28,17 @@ librarian::shelf(
   gapminder,
   stargazer,
   snakecase,
-  foreach
+  foreach,
+  # Here down is project specific
+  did,
+  scales,
+  ggrepel
 )
 
 # tell here where we are so we can use it elsewhere
 here::i_am("Code/include.R")
+theme_set(theme_minimal())
+source(here("Code/CustLib.R"))
 
 #Extensions---------
 #To check loaded packages use (.packages())
