@@ -140,3 +140,26 @@ renamed_table <-
   left_join(translation_table, c("Variable"="short_name")) %>%
   mutate(Variable=coalesce(long_name, Variable)) %>%
   select(-long_name)
+
+Dat <- read_dta(here("Data/UpdatedStateLevelData-2010.dta")) %>%
+  mutate(lRatMur = log(ratmur),
+         lRatRap = log(ratrap),
+         lRatAga = log(rataga),
+         LRatRob = log(ratrob),
+         lRatAut = log(rataut),
+         lRatBur = log(ratbur),
+         lRatLar = log(ratlar),
+         lRatVio = log(ratvio),
+         lRatPro = log(ratpro)) %>%
+  select(shalll,
+         starts_with("lRat"),
+         starts_with("ao"),
+         rpcpi, rpcui, rpcim, rpcrpo,
+         starts_with("ppb"),
+         starts_with("ppw"),
+         starts_with("ppn"),
+         starts_with("yr"),
+         AK,AL,AZ,AR,CA,CO,CT,DE,FL,GA,DC,HI,IA,ID,IL,IN,KS,KY,
+         LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,
+         OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY
+  )

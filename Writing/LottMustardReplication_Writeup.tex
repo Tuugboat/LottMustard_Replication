@@ -74,29 +74,69 @@ Here we are working with the state level data from the National Research Council
 
 \section{Empirical Models}
 
+We need to visit two separate models, the first is a standard two-way fixed effect model as was carried out in Lott and Mustard (2017). For our purposes, we will still be using the state level data, and we will specifically look at the Bacon decomposition to consider the potential innaccuracies of this model.
+
+Following that, we will look at the Callaway Sant'anna estimation, which will avoid the unfavorable properties of the two-way fixed effect model, and look at the effects in the form of an event study.
+
 \subsection{Two-Way Fixed Effects}
+
+This model is estimated by regressing the natural log of crime rates on the treatment, as well as the arrest rate for that specific crime. This provides an estimation of change in crime in terms of percentages, controlling for the current level of enforcement. We also include a wide variety of controls for demographic shifts over time.
+
+\input{../Tables/Table_TWFEVio.tex}
+
+\input{../Tables/Table_TWFEProp.tex}
+
+In this estimation, we find that there is a small but statistically insignificant reduction in violent crime. The only specific crime that has a significant reduction is rape, which drops by a surprising 8.8\%. 
+
+On the flip side, we see a slight but insignificant increase in property crimes, with a somewhat-significant increase in robbery specifically. This is not inconsistent with, but is far less decisive than, the results found by Lott and Mustard, where there is a reduction in violent crime and a smaller increase in property crime.
 
 \subsection{Bacon Decomposition}
 
+When estimating the weights and average estimates of the treatment variables, there are some obvious issues that arise. The Earlier vs. Later treated group has an outsized weight compared to the other groups, while the Later vs. Earlier treated group is much smaller. 
+
+\input{../Tables/Table_BaconDecomp.tex}
+
+Principally, these group weightings can cause our estimates to be inconsistent to the point of uselessness, especially in situations where there are already-strong trends year over year, and comparing a treated group to a treated group in this case can cause wildly inconsistent estimations.
+
 \subsection{Callaway and Sant'Anna}
+
+For a more accurate estimation in which we never compare a treated group to another treated group, we can turn to Callaway and Sant'Anna \cite{CallawaySantanna}. For this estimation, we will look at the treatment for all states in a single year as a collective and look at the treatment effect for those states. We will narrow our focus to violent crimes for now, since these are the crimes where we will find conclusive results, if there are any. 
 
 \input{../Tables/Table_CSEst.tex}
 
+Here, the estimation is *far* different; the average treatment effect on the treated group is barely negative, and only significantly so for the very first group of treated states. In no case do we have conclusive evidence that these crimes are being influenced much at all.
+
 \subsection{Event Study}
+
+Considering this data in the form of an event study, where we aggregate the effects by the years since the treatment for each group; negative values are the pre-treatment years, in which we can see both the trends and potentially anticipation. Our pre-treatment 'trend difference' provides some intuition of the potential accuracy we could attain from our data set. The post-event estimations fail to show any conclusive evidence that there are effects on the violent crime rate from these laws. We also see extremely wide standard errors and a noisy estimation in general, both of which indicate that there is very little to be pulled from this data set beyond simply failing to reject the null hypothesis that more guns means nothing for crime.
+
+\input{../Tables/Table_SA_ES.tex}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=.85\textwidth]{SA_EventStudy.png}
+    \end{center}
+    \caption{Event Study of Shall Issue law passage}
+    \label{fig:ESFig}
+\end{figure}
+
+\subsection*{Full Callaway Sant'Anna Results}
+
+The analysis of the violent crime trends continues to hold when we observe  crimes for which we have data.
+
+\input{../Tables/Table_CSEst_Vio.tex}
+
+\input{../Tables/Table_CSEst_Pro.tex}
+
+You can still see very clearly that there are no substantial effects beyond the very slightest effect in the first year estimated. Even those effects are only minimally significant.
 
 \section{Conclusion}
 
-\emph{To Self Only}
-Bring up:
-\begin{itemize}
-    \item State-wide variation biasing \emph{against} findings
-\end{itemize}  
+From this we can handily conclude that the effect of shall issue laws on crime are not statistically significant or substantial. This is a partial refutation of the conclusions in Lott and Mustard (2017), though Lott and Mustard use the slightly-different county level data.
 
-\begin{itemize}
+There is one factor in this analysis that is a complete mismatch with the original data: the within state heterogeneity in the impact of these laws is unaccounted for in this state level data. This may be non-trivial but, since these laws are passed at the state level, the aggregate effect of these laws should be evaluated at the state level. 
 
-    \item baker\_cs.R has the CS estimator reference
-    \item cs\_event.R has the Event Study reference
-\end{itemize}
+Regardless, given the slight differences between the state-level and county-level analysis and the similarity between the state- and county-level Bacon Decomposition, it is likely that the bias implicit in a two way fixed effect model is also similiar.
 
 
 \bibliography{LottMustardReplication_Bib}

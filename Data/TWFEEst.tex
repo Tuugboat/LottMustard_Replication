@@ -1,0 +1,27 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccccccccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variables: & Log Violent Rate & Log Property Rate & Log Murder Rate & Log Rape Rate   & Log Assault Rate & Log Robbery Rate & Log Auto Rate & Log Burglary Rate & Log Larceny Rate\\  
+   Model:               & (1)              & (2)               & (3)             & (4)             & (5)              & (6)              & (7)           & (8)               & (9)\\  
+   \midrule
+   \emph{Variables}\\
+   Treatment            & -0.0505          & 0.0205            & -0.0280         & -0.0878$^{***}$ & -0.0403          & -0.0490$^{*}$    & 0.0464        & -0.0277           & 0.0281\\   
+                        & (0.0367)         & (0.0159)          & (0.0341)        & (0.0308)        & (0.0508)         & (0.0274)         & (0.0435)      & (0.0205)          & (0.0169)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   year                 & Yes              & Yes               & Yes             & Yes             & Yes              & Yes              & Yes           & Yes               & Yes\\  
+   fipsstat             & Yes              & Yes               & Yes             & Yes             & Yes              & Yes              & Yes           & Yes               & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations         & 1,481            & 1,489             & 1,436           & 1,429           & 1,439            & 1,436            & 1,438         & 1,439             & 1,439\\  
+   R$^2$                & 0.95783          & 0.93649           & 0.93192         & 0.88324         & 0.92972          & 0.97382          & 0.91642       & 0.94993           & 0.92891\\  
+   Within R$^2$         & 0.34949          & 0.59052           & 0.23081         & 0.50501         & 0.26237          & 0.42838          & 0.52291       & 0.56501           & 0.57558\\  
+   \midrule \midrule
+   \multicolumn{10}{l}{\emph{Clustered (year \& fipsstat) standard-errors in parentheses}}\\
+   \multicolumn{10}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

@@ -32,7 +32,9 @@ librarian::shelf(
   # Here down is project specific
   did,
   scales,
-  ggrepel
+  ggrepel,
+  fixest,
+  bacondecomp
 )
 
 # tell here where we are so we can use it elsewhere
